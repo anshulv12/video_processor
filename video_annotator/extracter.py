@@ -21,7 +21,7 @@ class FrameExtractor:
             if frame_idx % frame_interval == 0:
                 frame_path = f"{self.output_dir}/frame_{frame_idx}.jpg"
                 cv2.imwrite(frame_path, frame)
-                frames_info.append({"timestamp": frame_idx // video_fps, "frame_path": frame_path})
+                frames_info.append({"timestamp": frame_idx / video_fps, "frame_path": frame_path})
             frame_idx += 1
         video_cap.release()
         return frames_info
