@@ -16,7 +16,6 @@ class Downloader:
         os.makedirs(workdir, exist_ok=True)
     
     def download(self, url: str) -> str:
-        """Download the file to a temporary file."""
         file_id = str(uuid4())[:8]
         file_path = f"{self.workdir}/data_{file_id}.zip"
         response = requests.get(url, stream=True)
@@ -27,7 +26,6 @@ class Downloader:
         return file_path
         
     def unzip_file(self, file_path: str) -> str:
-        """Unzip the file to a temporary directory."""
         file_id = str(uuid4())[:8]
         unzipped_path = f"{self.workdir}/unzipped_{file_id}"
         os.makedirs(unzipped_path, exist_ok=True)
@@ -36,7 +34,6 @@ class Downloader:
         return unzipped_path
 
     def upload_to_s3(self, file_dir: str, prefix: str):
-        """Upload an unzipped file to S3."""
         for root, dirs, files in os.walk(file_dir):
             for filename in files:
                 try:
