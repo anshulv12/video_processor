@@ -1,0 +1,2 @@
+POSE_HAND = {
+    "WRIST
