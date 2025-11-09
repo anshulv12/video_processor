@@ -40,8 +40,3 @@ class ObjectDetector:
             frame_index += 1
         video_cap.release()
         return detections
-
-if __name__ == "__main__":
-    detector = ObjectDetector()
-    detections = detector.detect_objects_video("video_data/0.mp4")
-    print(detections)

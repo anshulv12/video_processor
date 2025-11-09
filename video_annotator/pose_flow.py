@@ -1,7 +1,6 @@
 import json
 import numpy as np
 from typing import List, Dict, Any
-from pose_estimation import PoseEstimator
 
 class PoseFlowCalculator:
     def __init__(self):
@@ -42,13 +41,3 @@ class PoseFlowCalculator:
             frame_flow = self.compute_joint_flow(prev_frame, cur_frame, fps)
             flows.append(frame_flow)
         return flows
-
-
-if __name__ == "__main__":
-    pose_estimator = PoseEstimator()
-    pose_data = pose_estimator.estimate_pose_video("video_data/0.mp4")
-    
-    flow_calc = PoseFlowCalculator()
-    fps = 1
-    all_flows = flow_calc.compute_all_flows(pose_data, fps)
-    print(all_flows[29])

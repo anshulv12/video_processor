@@ -1,7 +1,5 @@
 from typing import List, Dict, Any
 import numpy as np
-from pose_estimation import PoseEstimator
-from object_detection import ObjectDetector
 
 class ObjectInteractions:
     def __init__(self, interaction_threshold: float = 0.5):
@@ -41,12 +39,3 @@ class ObjectInteractions:
             interaction_frame = self.compute_interaction_frame(pose_frame, object_frame)
             interactions.append(interaction_frame)
         return interactions
-
-if __name__ == "__main__":
-    interactions = ObjectInteractions()
-    pose_estimator = PoseEstimator()
-    pose_frames = pose_estimator.estimate_pose_video("video_data/0.mp4")
-    object_detector = ObjectDetector()
-    object_frames = object_detector.detect_objects_video("video_data/0.mp4")
-    interactions = interactions.compute_interaction_video(pose_frames, object_frames)
-    print(interactions)

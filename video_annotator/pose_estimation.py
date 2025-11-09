@@ -62,8 +62,3 @@ class PoseEstimator:
         video_cap.release()
         return pose_estimates
 
-
-if __name__ == "__main__":
-    pose_estimator = PoseEstimator()
-    pose_estimates = pose_estimator.estimate_pose_video("video_data/0.mp4")
-    print(pose_estimates[29])

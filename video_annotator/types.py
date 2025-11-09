@@ -1,2 +1,0 @@
-POSE_HAND = {
-    "WRIST

@@ -9,7 +9,7 @@ class FrameExtractor:
 
     def extract_frames(self, video_path: str):
         video_cap = cv2.VideoCapture(video_path)
-        video_fps = video_cap.get(cv2.CAP_PROP_FPS)
+        video_fps = video_cap.get(cv2.CAP_PROP_FPS) or 1.0
         frame_interval = int(max(1, video_fps / self.fps))
         
         frame_idx = 0
@@ -19,13 +19,13 @@ class FrameExtractor:
             if not success:
                 break
             if frame_idx % frame_interval == 0:
-                frame_path = f"{self.output_dir}/frame_{frame_idx}.jpg"
+                frame_path = os.path.join(self.output_dir, f"frame_{frame_idx}.jpg")
                 cv2.imwrite(frame_path, frame)
-                frames_info.append({"timestamp": frame_idx / video_fps, "frame_path": frame_path})
+                frames_info.append({
+                    "timestamp": frame_idx / video_fps,
+                    "frame_path": frame_path,
+                    "frame_index": frame_idx
+                })
             frame_idx += 1
         video_cap.release()
         return frames_info
-
-if __name__ == "__main__":
-    extractor = FrameExtractor("frames")
-    extractor.extract_frames("video_data/video.mp4")
