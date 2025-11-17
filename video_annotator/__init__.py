@@ -1,5 +1,6 @@
 from .extracter import FrameExtractor
 from .embedder import FrameAnnotator
+from .robust_annotator import RobustFrameAnnotator
 from .pose_estimation import PoseEstimator
 from .pose_flow import PoseFlowCalculator
 from .object_detection import ObjectDetector
@@ -9,10 +10,10 @@ from .segment_annotations import SegmentAnnotater
 __all__ = [
     'FrameExtractor',
     'FrameAnnotator',
+    'RobustFrameAnnotator',
     'PoseEstimator',
     'PoseFlowCalculator',
     'ObjectDetector',
     'ObjectInteractions',
-    'SegmentAnnotater'
+    'SegmentAnnotater',
 ]
-

@@ -2,10 +2,20 @@ from typing import List, Dict, Any
 import numpy as np
 
 class ObjectInteractions:
-    def __init__(self, interaction_threshold: float = 0.5):
+    def __init__(self, interaction_threshold: float = 0.5, assume_clothing: bool = True):
+        """
+        Args:
+            interaction_threshold: Distance threshold for hand-object interaction
+        """
         self.interaction_threshold = interaction_threshold
+        self.assume_clothing = assume_clothing
 
     def is_hand_interacting_with_object(self, pose_hand: Dict[str, Any], object_frame: Dict[str, Any]) -> List[str]:
+        # For laundry folding: assume hands are always manipulating clothing
+        if self.assume_clothing:
+            return ["clothing"]  # Hardcoded assumption for laundry tasks
+        
+        # Original logic (for when YOLO can actually detect relevant objects)
         max_points = [float('-inf'), float('-inf')]
         min_points = [float('inf'), float('inf')]
         for _, joint in pose_hand["joints"].items():
